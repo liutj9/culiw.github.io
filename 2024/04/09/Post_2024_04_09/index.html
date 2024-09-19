@@ -273,19 +273,17 @@
               <div class="markdown-body">
                 
                 <p>自己想配博客的念头始于2022年10月在看到wk学长的博客后，那时他博客里详细的实验教程以及心路记载让我自己也有了“创建一个博客”的念头，因此在23年2月的时候，自己采用Githubpages也配置了一个hexo博客，然而，这个博客并没有使用多久，就因为我在电脑上用Ubuntu完全覆盖了windows，导致hexo的文件全部丢失而告终；之后，我在Gridea上也创建了一些博客，写了一些简单的玩意：</p>
-<p><a target="_blank" rel="noopener" href="https://litijiao.ongridea.com/">https://litijiao.ongridea.com/</a></p>
+<p>https://litijiao.ongridea.com/</p>
 <p>但是，也因为各种原因，导致最后没有写太多，加上Gridea的一些内容不是很能定制化，所以自己还是选择了自建站博客。因此，在2024年2月，我创建了一个Halo的博客，Halo的好处是动态的，可以直接在浏览器上写（让我回想起了以前QQ空间的日志2333），而且Halo的配置简单，主题多样，因此我觉得Halo是个不错的选择。</p>
 <p>然而，在3月，因为自己专注大创项目，导致忘记续费云主机，最后导致Halo博客被关闭。因此，在我重建Blog的时候，我也在思考，我需要一个怎样的博客？</p>
 <ul>
-<li><p>这个博客最好能免费，因为我不确定自己写博客的热情能坚持多少，如果是云主机最便宜的一个月也要30，这个也是蛮大的一笔开销。</p>
-</li>
-<li><p>这个博客最好配置不要太麻烦，主要是我对于前端的工作其实并不是很了解，而且一些网络的配置自己也不是很明白，自己最主要是想找个可以记录自己“质量不高”文字的地方（质量高的可能我更愿意发知乎等社交平台）。</p>
-</li>
+<li><p>这个博客最好能免费，因为我不确定自己写博客的热情能坚持多少，如果是云主机最便宜的一个月也要30，这个也是蛮大的一笔开销。</p></li>
+<li><p>这个博客最好配置不要太麻烦，主要是我对于前端的工作其实并不是很了解，而且一些网络的配置自己也不是很明白，自己最主要是想找个可以记录自己“质量不高”文字的地方（质量高的可能我更愿意发知乎等社交平台）。</p></li>
 </ul>
 <p>所以，最后我还是选择回hexo，借助githubpage和自己已经有的域名，可以免费做一个还可以的网站，这些教程也给了我重要的参考：</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/60578464">https://zhuanlan.zhihu.com/p/60578464</a></p>
-<p><a target="_blank" rel="noopener" href="https://fluid-dev.github.io/hexo-fluid-docs/start/">https://fluid-dev.github.io/hexo-fluid-docs/start/</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.ayaka.space/2024/01/From-Halo-To-Hexo/">https://blog.ayaka.space/2024/01/From-Halo-To-Hexo/</a></p>
+<p>https://zhuanlan.zhihu.com/p/60578464</p>
+<p>https://fluid-dev.github.io/hexo-fluid-docs/start/</p>
+<p>https://blog.ayaka.space/2024/01/From-Halo-To-Hexo/</p>
 <p>总之，希望这次自己不要半途而废，能够在这里多记录一些所学所想。</p>
 
                 
@@ -417,6 +415,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -611,6 +615,49 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
   <script  src="/js/local-search.js" ></script>
 
 
@@ -627,5 +674,24 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js">
+</script>Copy
 </body>
 </html>
